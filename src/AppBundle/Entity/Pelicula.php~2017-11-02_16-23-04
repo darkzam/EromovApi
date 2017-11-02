@@ -80,7 +80,15 @@ class Pelicula
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Idioma", mappedBy="peliculas_subtitulo")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Idioma", inversedBy="peliculas_subtitulo")
+     * @ORM\JoinTable(name="pelicula_idioma",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="pelicula_id", referencedColumnName="id", onDelete="CASCADE")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="idioma_id", referencedColumnName="id", onDelete="CASCADE")
+     *   }
+     * )
      */
     private $idiomas_subtitulo;
 
